@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Collection</title>
 </head>
+
 <body>
   <%- include('../partials/_navbar') %>
+
+  <h1>My Watch Collection</h1>
+
+  <ul>
+    <% if (watches.forEach((watch) => { %>
+      <%console.log(watch.owner._id, currentUser._id)%>
+    <%  watch.owner._id === currentUser._id})) { %>
+        <li><a href="/users/<%= user._id %>/watches/<%= watch._id %>"><%= watch.brand %> <%= watch.model %></a></li>
+    <%} else {%>
+      <p>Your collection is currently empty.</p>
+  <% } %>
+  </ul>
+  <a href="/users/<%= user._id %>/watches/new">Add a watch</a>
+
 </body>
+
 </html>
