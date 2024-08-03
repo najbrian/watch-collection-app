@@ -4,25 +4,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Collection</title>
+  <title>Edit watch details </title>
 </head>
 
 <body>
   <%- include('../partials/_navbar') %>
 
-  <h1>Add a Watch</h1>
-  <form action="/users/<%= user._id %>/watches" method="POST">
+  <h1>Edit Details: <%= watch.year%> <%= watch.brand %> <%= watch.model %></h1>
+  <form action="/users/<%= user._id %>/watches/<%= watch._id%>?_method=PUT" method="POST">
     <label for="brand">Brand</label>
-    <input id="brand" name="brand" required>
+    <input id="brand" name="brand" value="<%= watch.brand %>" required>
 
     <label for="model">Model</label>
-    <input id="model" name="model" required>
+    <input id="model" name="model" value="<%= watch.model %>"required>
 
     <label for="year">Year</label>
-    <input  id="year" name="year" type="number" max="2024" required>
+    <input  id="year" name="year" type="number" max="2024" value="<%= watch.year %>" required>
 
     <label for="dialsize">Dial Size</label>
-    <input id="dialsize" name="dialsize" type="text" required>
+    <input id="dialsize" name="dialsize" type="text" value="<%= watch.dialsize %>" required>
 
     <label for="condition">Condition</label>
     <select id="condition" name="condition" required>
@@ -31,17 +31,18 @@
       <option value="slightly-used">Slightly used</option>
       <option value="used">Used</option> . 
       <option value="old">Vintage</option>
-    </select> 
+    </select>
+
     <label for="price">Price</label>
-    <input id="price" name="price" type="number" min="0">
+    <input id="price" name="price" type="number" min="0" value="<%= watch.price %>">
 
     <label for="forsale">Is this watch for sale?</label>
-    <input id="forsale" name="isForSale" type="checkbox">
+    <input id="forsale" name="isForSale" type="checkbox" <%if (watch.isForSale) {%>checked<%}%>>
 
     <label for="notes">Notes</label>
-    <textarea id="notes" name="notes"></textarea>
+    <textarea id="notes" name="notes"><%= watch.notes %></textarea>
 
-    <button type="submit">Add watch</button>
+    <button type="submit"> Update watch details</button>
   </form>
 
 

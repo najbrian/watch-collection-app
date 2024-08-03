@@ -12,6 +12,10 @@ const commentSchema = new mongoose.Schema({
 })
 
 const watchSchema = new mongoose.Schema({
+  year: {
+    type: Number,
+    required: true,
+  },
   brand: {
     type: String,
     required: true,

@@ -15,7 +15,7 @@
   <ul>
     <% if (watches.length > 0) {%>
       <%watches.forEach((watch) => { %>
-        <li><a href="/users/<%= user._id %>/watches/<%= watch._id %>"><%= watch.brand %> <%= watch.model %></a></li>
+        <li><a href="/users/<%= user._id %>/watches/<%= watch._id %>"><%= watch.year %> <%= watch.brand %> <%= watch.model %></a></li>
     <%})%>
     <%} else {%>
       <p>Your collection is currently empty.</p>

@@ -4,11 +4,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= watch.brand %> <%= watch.model %></title>
+  <title><%= watch.year%> <%= watch.brand %> <%= watch.model %></title>
 </head>
 
 <body>
   <%- include('../partials/_navbar') %>
+<h1><%= watch.year%> <%= watch.brand %> <%= watch.model %></h1>
+<ul>
+  <li>Brand: <%= watch.brand %></li>
+  <li>Model: <%= watch.model %></li>
+  <li>Year: <%= watch.year %></li>
+  <li>Dial Size: <%= watch.dialsize %></li>
+  <li>Condition: <%= watch.condition %></li>
+  <li>Price: $<%= watch.price %></li>
+  <li>For Sale?: <%= watch.isForSale %></li>
+  <li>Notes: <%= watch.notes %></li>
+</ul>
+<br>
+<a href="/users/<%=user._id%>/watches/<%= watch._id %>/edit">Edit watch details</a>
 
 </body>
 
