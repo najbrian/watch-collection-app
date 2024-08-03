@@ -13,10 +13,10 @@
   <h1>My Watch Collection</h1>
 
   <ul>
-    <% if (watches.forEach((watch) => { %>
-      <%console.log(watch.owner._id, currentUser._id)%>
-    <%  watch.owner._id === currentUser._id})) { %>
+    <% if (watches.length > 0) {%>
+      <%watches.forEach((watch) => { %>
         <li><a href="/users/<%= user._id %>/watches/<%= watch._id %>"><%= watch.brand %> <%= watch.model %></a></li>
+    <%})%>
     <%} else {%>
       <p>Your collection is currently empty.</p>
   <% } %>

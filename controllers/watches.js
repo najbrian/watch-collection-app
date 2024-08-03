@@ -8,9 +8,8 @@ const Watch = require('../models/watch.js');
 
 router.get('/', async (req, res) => {
   try {
-    const populatedWatches = await Watch.find({}).populate('owner')
-    currentUser = req.session.user
-    res.render('watches/index.ejs', { watches: populatedWatches, currentUser })
+    const populatedWatches = await Watch.find({owner: req.session.user}).populate('owner')
+    res.render('watches/index.ejs', { watches: populatedWatches })
   } catch (error) {
     console.log(error)
     res.redirect('/')
