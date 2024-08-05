@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Other Collections</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <%- include('../partials/_navbar.ejs') %>
+  <h1>Check out other user collections</h1>
+  <ul>
+    <% otherUsers.forEach((otherUser) => { %>
+      <li><a href="/collections/<%=otherUser._id%>"><%= otherUser.username%>'s collection</a></li>
+    <% }) %>
+</ul>
+</body>
+</html>

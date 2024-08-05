@@ -9,6 +9,7 @@ const session = require('express-session');
 
 const authController = require('./controllers/auth.js');
 const watchesController = require('./controllers/watches.js')
+const collectionsController = require('./controllers/collections.js')
 
 const port = process.env.PORT ? process.env.PORT : '3000';
 
@@ -43,6 +44,7 @@ app.use(passUserToView)
 app.use('/auth', authController);
 app.use(isSignedIn)
 app.use('/users/:userId/watches', watchesController)
+app.use('/collections', collectionsController)
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);

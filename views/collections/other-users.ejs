@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= userDetails.username %>'s Collection</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <%- include('../partials/_navbar.ejs') %>
+  <h1><%= userDetails.username %>'s Collection</h1>
+  <ul>
+    <% userCollection.forEach((watch) => { %>
+      <li><a href="/collections/<%=userDetails._id%>/<%= watch._id %>"><%= watch.year %> <%= watch.brand %> <%= watch.model %></a></li>
+    <% }) %>
+</ul>
+</body>
+</html>

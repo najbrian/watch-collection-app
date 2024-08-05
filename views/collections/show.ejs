@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= userWatch.owner.username %>'s <%= userWatch.year %> <%= userWatch.brand %> <%= userWatch.model %>
+  </title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+  <%- include('../partials/_navbar.ejs') %>
+    <h1><%= userWatch.year %> <%= userWatch.brand %> <%= userWatch.model %></h1>
+    <table>
+      <tbody>
+        <tr>
+          <th>Year</th>
+          <td><%= userWatch.year %></td>
+        </tr>
+        <tr>
+          <th>Brand</th>
+          <td><%= userWatch.brand %></td>
+        </tr>
+        <tr>
+          <th>Model</th>
+          <td><%= userWatch.model %></td>
+        </tr>
+        <tr>
+          <th>Dial Size</th>
+          <td><%= userWatch.dialsize %></td>
+        </tr>
+        <tr>
+          <th>Condition</th>
+          <td><%= userWatch.condition %></td>
+        </tr>
+        <tr>
+          <th>Price</th>
+          <td><%= userWatch.price %></td>
+        </tr>
+        <tr>
+          <th>For Sale</th>
+          <%if (userWatch.isForSale) { %>
+            <td>Yes - contact <%=userWatch.owner.username%> for details</td>
+            <%} else {%>
+              <td>No</td>
+              <%}%>
+            </tr>
+            <tr>
+            <th>Owner Notes</th>
+            <td><%= userWatch.notes %></td> 
+          </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>
