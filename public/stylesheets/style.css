@@ -1,14 +1,32 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+body, html {
   box-sizing: border-box;
   display: flex;
   margin: 0;
   text-decoration: none;
+  font-family: 'Raleway', sans-serif;
+  background-color: beige;
 
+}
+
+th {
+  text-align: right;
+}
+td {
+  text-align: left;
+  padding-left: 5px;
 }
 
 .nav-bar {
   text-decoration: none;
   color: inherit;
+  transition: font-weight 0.15s;
+  transition: color 0.15s;
+}
+
+.nav-bar:hover {
+  font-weight:bold;
+  color: rgb(194, 194, 194);
 }
 
 .web-page-content {
@@ -16,18 +34,56 @@ body {
   flex-direction:column;
   align-items: center;
   width: 100vw;
+  background-color: beige
 }
 
 .form {
   display: flex;
   flex-direction: column;
+  color: white;
+  text-align: center;
+}
+
+.form-button {
+  margin-top: 15px;
+  font-size: 20px;
+  border: none;
+  background-color: rgb(16,80,51);
+  border-radius: 35px;
+  font-family: 'Raleway', sans-serif;
+  color: beige;
+  transition: color 0.15s;
+}
+
+.form-alt-option {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.15s;
+  font-weight:bold;
+}
+
+.form-alt-option:hover, .form-button:hover {
+  color: goldenrod;
+}
+
+.form-alt-option:active, .form-button:active {
+  color: black;
+}
+
+
+.form-div {
+  margin: 5px;
+  padding: 35px;
+  padding-top: 20px;
+  background-color: rgb(16,80,51);
+  border-radius: 20px;
 }
 
 :root {
-  --bar-width: 35px;
-  --bar-height: 6px;
-  --hamburger-gap: 6px;
-  --foreground: #333;
+  --bar-width: 40px;
+  --bar-height: 5px;
+  --hamburger-gap: 5px;
+  --foreground: rgb(16,80,51);
   --background: white;
   --hamburger-margin: 8px;
   --animation-timing: 200ms ease-in-out;
@@ -46,6 +102,8 @@ body {
   left: var(--hamburger-margin);
   z-index: 2;
   cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  transition: opacity 0.2s;
 }
 
 .hamburger-menu:has(input:focus-visible)::before,
@@ -112,4 +170,12 @@ body {
 
 .hamburger-menu:has(input:checked) + .sidebar {
   translate: 0;
+}
+
+.hamburger-menu:hover {
+  opacity: 0.5;
+}
+
+.hamburger-menu:active {
+  opacity: 1;
 }

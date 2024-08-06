@@ -12,49 +12,75 @@
 
 <body>
   <%- include('../partials/_navbar.ejs') %>
-  <div class="web-page-content">
-    <h1><%= userWatch.year %> <%= userWatch.brand %> <%= userWatch.model %></h1>
-    <table>
-      <tbody>
-        <tr>
-          <th>Year</th>
-          <td><%= userWatch.year %></td>
-        </tr>
-        <tr>
-          <th>Brand</th>
-          <td><%= userWatch.brand %></td>
-        </tr>
-        <tr>
-          <th>Model</th>
-          <td><%= userWatch.model %></td>
-        </tr>
-        <tr>
-          <th>Dial Size</th>
-          <td><%= userWatch.dialsize %></td>
-        </tr>
-        <tr>
-          <th>Condition</th>
-          <td><%= userWatch.condition %></td>
-        </tr>
-        <tr>
-          <th>Price</th>
-          <td><%= userWatch.price %></td>
-        </tr>
-        <tr>
-          <th>For Sale</th>
-          <%if (userWatch.isForSale) { %>
-            <td>Yes - contact <%=userWatch.owner.username%> for details</td>
-            <%} else {%>
-              <td>No</td>
-              <%}%>
-            </tr>
-            <tr>
-            <th>Owner Notes</th>
-            <td><%= userWatch.notes %></td> 
+    <div class="web-page-content">
+      <h1><%= userWatch.year %> <%= userWatch.brand %> <%= userWatch.model %></h1>
+      <table>
+        <tbody>
+          <tr>
+            <th>Year:</th>
+            <td><%= userWatch.year %></td>
           </tr>
-        </tbody>
-    </table>
-  </div>
+          <tr>
+            <th>Brand:</th>
+            <td><%= userWatch.brand %></td>
+          </tr>
+          <tr>
+            <th>Model:</th>
+            <td><%= userWatch.model %></td>
+          </tr>
+          <tr>
+            <th>Dial Size:</th>
+            <td><%= userWatch.dialsize %></td>
+          </tr>
+          <tr>
+            <th>Condition:</th>
+            <td><%= userWatch.condition %></td>
+          </tr>
+          <tr>
+            <th>Price:</th>
+            <td><%= userWatch.price %></td>
+          </tr>
+          <tr>
+            <th>For Sale:</th>
+            <%if (userWatch.isForSale) { %>
+              <td>Yes - contact <strong><%=userWatch.owner.username%></strong> for details</td>
+              <%} else {%>
+                <td>No</td>
+                <%}%>
+              </tr>
+              <tr>
+              <th>Owner Notes:</th>
+              <td><%= userWatch.notes %></td> 
+            </tr>
+          </tbody>
+      </table>
+      
+      <h2>Favorites</h2>
+    <p>Favorited by <%=userWatch.favoritedByUsers.length%> people</p>
+    <% if (userHasFavorited) { %>
+      <p>You have already liked this watch!</p>
+      <form action="/collections/<%=userWatch.owner._id%>/<%= userWatch._id %>/favorited-by/<%=user._id%>?_method=DELETE" method="POST">
+        <button type="submit">Unlike this watch</button>
+      </form>
+      <% } else { %> 
+      <form action="/collections/<%=userWatch.owner._id%>/<%= userWatch._id %>/favorited-by/<%=user._id%>" method="POST">
+        <button type="submit">Like this watch!</button>
+      </form>
+      <% } %>
+      
+      <h2>Comments</h2>
+      <form action="/collections/<%=userWatch.owner._id%>/<%= userWatch._id %>/comments" method="POST">
+        <label for="comment">Leave a Comment</label>
+        <textarea id="comment" name="comment"></textarea>
+        <button type="submit">Post Comment</button>
+      </form>
+      <%if(comments.length === 0) { %>
+         <p>hello</p>
+      <% } else { %>
+        <% comments.forEach((comment) => { %>
+        <p>no comments</p>
+      <% })} %>
+    </div>
 </body>
 
 </html>

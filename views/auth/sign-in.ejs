@@ -9,13 +9,18 @@
 <body>
   <div class="web-page-content">
     <h1>Sign in</h1>
-    <form class="form" action="/auth/sign-in" method="POST">
-      <label for="username">Username:</label>
-      <input type="text" name="username" id="username" required />
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" required />
-      <button type="submit">Sign in</button>
-    </form>
+    <div class="form-div">
+      <form class="form" action="/auth/sign-in" method="POST">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" required />
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required />
+        <button class="form-button" type="submit">Sign in</button>
+        <br>
+        <p>Don't Have An Account?</p>
+        <a class=form-alt-option href="/auth/sign-up">Register</a>
+      </form>
+    </div>
   </div>
 </body>
 </html>

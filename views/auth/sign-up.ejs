@@ -8,21 +8,25 @@
 </head>
 <body>
   <div class="web-page-content">
-    <h1>Create a new account!</h1>
-    <form class="form" action="/auth/sign-up" method="POST">
-      <label for="username">Username:</label>
-      <input type="text" name="username" id="username" required />
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" required />
-      <label for="confirmPassword">Confirm Password:</label>
-      <input 
-        type="password"
-        name="confirmPassword"
-        id="confirmPassword"
-        required 
-      />
-      <button type="submit">Sign up</button>
-    </form>
+    <h1>Create an account</h1>
+    <div class="form-div">
+      <form class="form" action="/auth/sign-up" method="POST">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" required />
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required />
+        <label for="confirmPassword">Confirm Password</label>
+        <input 
+          type="password"
+          name="confirmPassword"
+          id="confirmPassword"
+          required 
+        />
+        <button class="form-button" type="submit">Register</button>
+        <br>
+        <p>Have An Account? <a class=form-alt-option href="/auth/sign-in">Sign In</a></p>
+      </form>
+    </div>
   </div>
 </body>
 </html>
