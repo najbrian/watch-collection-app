@@ -54,33 +54,40 @@
             </tr>
           </tbody>
       </table>
-      
-      <h2>Favorites</h2>
-    <p>Favorited by <%=userWatch.favoritedByUsers.length%> people</p>
-    <% if (userHasFavorited) { %>
-      <p>You have already liked this watch!</p>
-      <form action="/collections/<%=userWatch.owner._id%>/<%= userWatch._id %>/favorited-by/<%=user._id%>?_method=DELETE" method="POST">
-        <button type="submit">Unlike this watch</button>
-      </form>
-      <% } else { %> 
-      <form action="/collections/<%=userWatch.owner._id%>/<%= userWatch._id %>/favorited-by/<%=user._id%>" method="POST">
-        <button type="submit">Like this watch!</button>
-      </form>
-      <% } %>
-      
-      <h2>Comments</h2>
-      <form action="/collections/<%=userWatch.owner._id%>/<%= userWatch._id %>/comments" method="POST">
-        <label for="comment">Leave a Comment</label>
-        <textarea id="comment" name="comment"></textarea>
-        <button type="submit">Post Comment</button>
-      </form>
-      <%if(comments.length === 0) { %>
-         <p>hello</p>
-      <% } else { %>
-        <% comments.forEach((comment) => { %>
-        <p>no comments</p>
-      <% })} %>
+      <%if (userWatch.favoritedByUsers.length === 1) { %>
+        <p> <%=userWatch.favoritedByUsers.length%> person has liked this watch!</p>
+      <%} else { %>
+        <p> <%=userWatch.favoritedByUsers.length%> people have liked this watch!</p>
+      <%}%>
+      <% if (userHasFavorited) { %>
+        <form action="/collections/<%=userWatch.owner._id%>/<%= userWatch._id %>/favorited-by/<%=user._id%>?_method=DELETE" method="POST">
+          <button type="submit">Unlike this watch</button>
+        </form>
+        <% } else { %>
+          <form action="/collections/<%=userWatch.owner._id%>/<%= userWatch._id %>/favorited-by/<%=user._id%>" method="POST">
+            <button type="submit">Like this watch!</button>
+          </form>
+          <% } %>
+      <div class="comments-div">
+        <h2>Comments</h2>
+        <form action="/collections/<%=userWatch.owner._id%>/<%= userWatch._id %>/comments" method="POST">
+          <textarea id="comment" name="comment"></textarea>
+          <button type="submit">Post Comment</button>
+        </form>
+        <%if(userWatch.commentsByUsers.length === 0) { %>
+          <p>There are no comments</p>
+          <% } else { %>
+            <% userWatch.commentsByUsers.forEach((comment) => { %>
+              <p><strong><%=comment.owner.username%></strong>: <%=comment.comment%>
+              <%if(comment.owner.id === currentUser) {%>
+                <form action="/collections/<%=userWatch.owner._id%>/<%= userWatch._id %>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                  <button type="submit">Delete Comment</button>
+                </form>
+              <%}%>
+            </p>
+              <% })} %>
+      </div>
     </div>
-</body>
+  </body>
 
 </html>

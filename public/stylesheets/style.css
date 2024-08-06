@@ -37,6 +37,11 @@ td {
   background-color: beige
 }
 
+.comments-div {
+  display: inline-block;
+  width: 100vw;
+}
+
 .form {
   display: flex;
   flex-direction: column;

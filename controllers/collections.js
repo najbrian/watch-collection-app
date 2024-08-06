@@ -18,10 +18,10 @@ router.get('/:ownerId', async (req, res) => {
 
 router.get('/:ownerId/:watchId', async (req, res) => {
   try {
-  const userWatch = await Watch.findById(req.params.watchId).populate('owner')
+  const userWatch = await Watch.findById(req.params.watchId).populate('owner').populate('commentsByUsers.owner')
   const userHasFavorited = userWatch.favoritedByUsers.some((user) => user.equals(req.session.user._id))
-  const comments = userWatch.commentsByUsers.find(req.params.watchId)
-  res.render('collections/show.ejs', { userWatch, userHasFavorited, comments })
+  const currentUser = req.session.user._id
+  res.render('collections/show.ejs', { userWatch, userHasFavorited, currentUser })
   }catch(error) {
     console.log(error)
     res.redirect('/')
@@ -31,11 +31,26 @@ router.get('/:ownerId/:watchId', async (req, res) => {
 router.post('/:ownerId/:watchId/comments', async (req,res) => {
   try{
     req.body.owner = req.session.user._id
-    const currentWatch = await Watch.findById(req.params.watchId)
+    const currentWatch = await Watch.findById(req.params.watchId).populate('owner')
     currentWatch.commentsByUsers.push(req.body)
   
     await currentWatch.save()
-    res.render('collections/show.ejs', {currentWatch})
+    res.redirect(`/collections/${req.params.ownerId}/${req.params.watchId}`)
+
+  } catch(error) {
+    console.log(error)
+    res.redirect('/')
+  }
+})
+
+router.delete('/:ownerId/:watchId/comments/:commentId', async (req,res) => {
+  try{
+    const comments = await Watch.findById(req.params.watchId)
+    // comments.commentsByUsers = comments.commentsByUsers.filter((comment) => comment._id != req.params.commentId )
+    comments.commentsByUsers.id(req.params.commentId).deleteOne()
+    console.log(comments.commentsByUsers)
+    await comments.save()
+    res.redirect(`/collections/${req.params.ownerId}/${req.params.watchId}`)
 
   } catch(error) {
     console.log(error)
@@ -48,7 +63,7 @@ router.post('/:ownerId/:watchId/favorited-by/:userId', async (req, res) => {
     await Watch.findByIdAndUpdate(req.params.watchId, {
       $push: { favoritedByUsers: req.params.userId },
     })
-    res.redirect(`/collections/${req.params.ownerId}/${req.params.watchId}`)
+    res.redirect(`/collections/${req.params.ownerId}/${req.params.watchId}`)``
   } catch (error) {
     console.log(error)
     res.redirect('/')
