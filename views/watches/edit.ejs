@@ -14,7 +14,12 @@
     <h1>Edit Details: <%= watch.year%> <%= watch.brand %> <%= watch.model %></h1>
     <form class="form" action="/users/<%= user._id %>/watches/<%= watch._id%>?_method=PUT" method="POST">
       <label for="brand">Brand</label>
-      <input id="brand" name="brand" value="<%= watch.brand %>" required>
+          <select id="brand" name="brand" required>
+            <option><%= watch.brand %></option>
+            <% result.forEach((brand) => { %>
+              <option value="<%= brand.brandName%>"><%= brand.brandName %></option>
+            <% }) %>
+          </select>
 
       <label for="model">Model</label>
       <input id="model" name="model" value="<%= watch.model %>"required>

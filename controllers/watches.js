@@ -18,7 +18,6 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/new', async (req, res) => {
-  console.log(req.body)
   const url = 'https://watch-database1.p.rapidapi.com/all-brands';
   const options = {
     method: 'GET',
@@ -52,9 +51,19 @@ router.get('/:watchId', async (req, res) => {
 })
 
 router.get('/:watchId/edit', async (req, res) => {
+  const url = 'https://watch-database1.p.rapidapi.com/all-brands';
+  const options = {
+    method: 'GET',
+    headers: {
+      'x-rapidapi-key': `${process.env.API_KEY}`,
+      'x-rapidapi-host': 'watch-database1.p.rapidapi.com'
+    }
+  };
   try {
+    const response = await fetch(url, options);
+    const result = await response.json();
     const editWatch = await Watch.findById(req.params.watchId).populate('owner')
-    res.render('watches/edit.ejs', { watch: editWatch })
+    res.render('watches/edit.ejs', { watch: editWatch, result })
   } catch (error) {
     console.log(error)
     res.redirect('/')
