@@ -4,30 +4,105 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= watch.year%> <%= watch.brand %> <%= watch.model %></title>
+  <title>
+    <%= watch.year%>
+      <%= watch.brand %>
+        <%= watch.model %>
+  </title>
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
 <body>
   <%- include('../partials/_navbar') %>
-<div class="web-page-content">
-  <h1><%= watch.year%> <%= watch.brand %> <%= watch.model %></h1>
-  <ul>
-    <li>Brand: <%= watch.brand %></li>
-    <li>Model: <%= watch.model %></li>
-    <li>Year: <%= watch.year %></li>
-    <li>Dial Size: <%= watch.dialsize %></li>
-    <li>Condition: <%= watch.condition %></li>
-    <li>Price: $<%= watch.price %></li>
-    <li>For Sale?: <%= watch.isForSale %></li>
-    <li>Notes: <%= watch.notes %></li>
-  </ul>
-  <br>
-  <a href="/users/<%=user._id%>/watches/<%= watch._id %>/edit">Edit watch details</a>
-  <form action="/users/<%=user._id%>/watches/<%= watch._id %>?_method=DELETE" method="POST">
-    <button type="submit">Delete from collection</button>
-  </form>
-</div>
+    <div class="web-page-content">
+      <h1>
+        <%= watch.year%>
+          <%= watch.brand %>
+            <%= watch.model %>
+      </h1>
+
+      <table class="collections-show">
+        <tbody>
+          <tr>
+            <th>Year</th>
+            <td>
+              <%= watch.year %>
+            </td>
+          </tr>
+          <tr>
+            <th>Brand</th>
+            <td>
+              <%= watch.brand %>
+            </td>
+          </tr>
+          <tr>
+            <th>Model</th>
+            <td>
+              <%= watch.model %>
+            </td>
+          </tr>
+          <tr>
+            <th>Dial Size</th>
+            <td>
+              <%= watch.dialsize %>
+            </td>
+          </tr>
+          <tr>
+            <th>Condition</th>
+            <td>
+              <%= watch.condition %>
+            </td>
+          </tr>
+          <tr>
+            <th>Price</th>
+            <td>
+              <%= watch.price %>
+            </td>
+          </tr>
+          <tr>
+            <th>For Sale</th>
+            <%if (watch.isForSale) { %>
+              <td>Yes - contact <strong>
+                  <%=watch.owner.username%>
+                </strong> for details</td>
+              <%} else {%>
+                <td>No</td>
+                <%}%>
+          </tr>
+          <tr>
+            <th>Notes</th>
+            <td>
+              <%= watch.notes %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <a href="/users/<%=user._id%>/watches/<%= watch._id %>/edit">Edit watch details</a>
+      <form action="/users/<%=user._id%>/watches/<%= watch._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete from collection</button>
+      </form>
+      <div class="likes-div">
+        <%if (watch.favoritedByUsers.length===1) { %>
+          <p>
+            <%=watch.favoritedByUsers.length%> person has liked this watch
+          </p>
+          <%} else { %>
+            <p>
+              <%=watch.favoritedByUsers.length%> people have liked this watch
+            </p>
+            <%}%>
+      </div>
+      <div class="comments-div">
+        <h2>Comments</h2>
+        <%if(watch.commentsByUsers.length===0) { %>
+          <p>There are no comments</p>
+          <% } else { %>
+            <% watch.commentsByUsers.forEach((comment)=> { %>
+              <p><strong><%=comment.owner.username%></strong>: <%=comment.comment%>
+              </p>
+              <% })} %>
+      </div>
+    </div>
 </body>
 
 </html>

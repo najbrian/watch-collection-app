@@ -15,14 +15,30 @@
 
     <ul>
       <% if (watches.length > 0) {%>
-        <%watches.forEach((watch) => { %>
-          <li><a href="/users/<%= user._id %>/watches/<%= watch._id %>"><%= watch.year %> <%= watch.brand %> <%= watch.model %></a></li>
-      <%})%>
+        <table class="mywatch-index">
+          <thead>
+            <tr>
+              <th>Watches</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%watches.forEach((watch) => { %>
+              <tr>
+                <td><a href="/users/<%= user._id %>/watches/<%= watch._id %>"><%= watch.year %> <%= watch.brand %> <%= watch.model %></a></td>
+          <%})%>
+              </tr>
+              <tr><td><br></td></tr>
+              <tr>
+                <td><a class="add-watch-link" href="/users/<%= user._id %>/watches/new">Add a watch</a></td>
+              </tr>
+          </tbody>
+        </table>
+        
       <%} else {%>
         <p>Your collection is currently empty.</p>
+        <a class="add-watch-link" href="/users/<%= user._id %>/watches/new">Add a watch</a>
     <% } %>
     </ul>
-    <a href="/users/<%= user._id %>/watches/new">Add a watch</a>
   </div>
 </body>
 

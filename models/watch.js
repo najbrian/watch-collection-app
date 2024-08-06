@@ -25,7 +25,7 @@ const watchSchema = new mongoose.Schema({
     required: true,
   },
   dialsize: {
-    type: String,
+    type: Number,
     required: true,
   },
   notes: {

@@ -14,7 +14,7 @@
   <%- include('../partials/_navbar.ejs') %>
     <div class="web-page-content">
       <h1><%= userWatch.year %> <%= userWatch.brand %> <%= userWatch.model %></h1>
-      <table>
+      <table class="collections-show">
         <tbody>
           <tr>
             <th>Year:</th>
@@ -54,6 +54,7 @@
             </tr>
           </tbody>
       </table>
+    <div class="likes-div">
       <%if (userWatch.favoritedByUsers.length === 1) { %>
         <p> <%=userWatch.favoritedByUsers.length%> person has liked this watch!</p>
       <%} else { %>
@@ -68,6 +69,7 @@
             <button type="submit">Like this watch!</button>
           </form>
           <% } %>
+      </div>
       <div class="comments-div">
         <h2>Comments</h2>
         <form action="/collections/<%=userWatch.owner._id%>/<%= userWatch._id %>/comments" method="POST">

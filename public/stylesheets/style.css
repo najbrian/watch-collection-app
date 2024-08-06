@@ -6,15 +6,32 @@ body, html {
   text-decoration: none;
   font-family: 'Raleway', sans-serif;
   background-color: beige;
-
 }
 
-th {
+table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.collections-show th {
   text-align: right;
-}
-td {
-  text-align: left;
+  border: none;
+  background-color: rgb(16,80,51);
+  color: rgb(226, 198, 128);
   padding-left: 5px;
+  padding-right: 5px;
+}
+
+.collections-show td {
+  text-align: left;
+  border: none;
+  color: rgb(16,80,51);
+  background-color: rgb(226, 198, 128);
+  width: 0 auto;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .nav-bar {
@@ -37,12 +54,24 @@ td {
   background-color: beige
 }
 
-.comments-div {
-  display: inline-block;
+.collections-show {
+  display: flex;
+  flex-direction:column;
+  align-items: center;
   width: 100vw;
+  background-color: beige
 }
 
-.form {
+.likes-div, .comments-div {
+  text-align: center;
+}
+
+.mywatch-index th, .mywatch-index td {
+ text-align: center;
+}
+
+
+#form {
   display: flex;
   flex-direction: column;
   color: white;
@@ -62,7 +91,7 @@ td {
 
 .form-alt-option {
   text-decoration: none;
-  color: inherit;
+  color: rgb(147, 88, 219);
   transition: color 0.15s;
   font-weight:bold;
 }
@@ -169,7 +198,7 @@ td {
   padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
   background-color: var(--foreground);
   color: var(--background);
-  max-width: 10rem;
+  max-width: 20rem;
   min-height: 100vh;
 }
 

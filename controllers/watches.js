@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const fetch = require('node-fetch');
 
 const User = require('../models/user.js');
 const Watch = require('../models/watch.js');
@@ -16,8 +17,28 @@ router.get('/', async (req, res) => {
   }
 })
 
-router.get('/new', (req, res) => {
-  res.render('watches/new.ejs')
+router.get('/new', async (req, res) => {
+  console.log(req.body)
+  const url = 'https://watch-database1.p.rapidapi.com/all-brands';
+  const options = {
+    method: 'GET',
+    headers: {
+      'x-rapidapi-key': `${process.env.API_KEY}`,
+      'x-rapidapi-host': 'watch-database1.p.rapidapi.com'
+    }
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const result = await response.json();
+    res.render('watches/new.ejs', { result })
+  } catch (error) {
+    console.error(error);
+  }
+})
+
+router.get('/brand', async (req,res) => {
+  console.log(req.body)
 })
 
 router.get('/:watchId', async (req, res) => {
@@ -60,13 +81,13 @@ router.post('/', async (req, res) => {
 router.delete('/:watchId', async (req, res) => {
   try {
     const currentWatch = await Watch.findById(req.params.watchId)
-    if(currentWatch.owner.equals(req.session.user._id)) {
-    await currentWatch.deleteOne()
-    res.redirect(`/users/${req.session.user._id}/watches`)
-  } else {
-    res.redirect('/')
-  }
-  
+    if (currentWatch.owner.equals(req.session.user._id)) {
+      await currentWatch.deleteOne()
+      res.redirect(`/users/${req.session.user._id}/watches`)
+    } else {
+      res.redirect('/')
+    }
+
   } catch (error) {
     console.log(error)
     res.redirect('/')

@@ -63,7 +63,7 @@ router.post('/:ownerId/:watchId/favorited-by/:userId', async (req, res) => {
     await Watch.findByIdAndUpdate(req.params.watchId, {
       $push: { favoritedByUsers: req.params.userId },
     })
-    res.redirect(`/collections/${req.params.ownerId}/${req.params.watchId}`)``
+    res.redirect(`/collections/${req.params.ownerId}/${req.params.watchId}`)
   } catch (error) {
     console.log(error)
     res.redirect('/')
