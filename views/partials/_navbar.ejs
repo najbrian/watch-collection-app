@@ -1,10 +1,25 @@
-<nav>
-  <% if (user) { %>
-    <a href="/collections/">Explore Other Collections</a>
-    <a href="/users/<%= user._id %>/watches">View My Collection</a>
-    <a href="/auth/sign-out">Sign Out</a>
-    <% } else { %>
-      <a href="/auth/sign-up">Sign Up</a>
-      <a href="/auth/sign-in">Sign In</a>
-      <% } %>
-</nav>
+<label class="hamburger-menu">
+  <input type="checkbox" />
+</label>
+<aside class="sidebar">
+  <nav>
+    <% if (user) { %>
+      <div>
+        <a href="/collections/" class="nav-bar">Explore Other Collections</a>
+      </div>
+      <div>
+        <a href="/users/<%= user._id %>/watches" class="nav-bar">View My Collection</a>
+      </div>
+      <div>
+        <a href="/auth/sign-out" class="nav-bar">Sign Out</a>
+      </div>
+      <% } else { %>
+        <div>
+          <a href="/auth/sign-up" class="nav-bar">Sign Up</a>
+        </div>
+        <div>
+          <a href="/auth/sign-in" class="nav-bar">Sign In</a>
+        </div>
+        <% } %>
+  </nav>
+</aside>

@@ -8,6 +8,7 @@
 </head>
 <body>
   <%- include('./partials/_navbar.ejs') %>
+  <div class="web-page-content">
   <% if (user) { %>
     <h1>Welcome, <%= user.username %>!</h1>
     <p><a href="/users/<%=user._id%>/watches">My Collection</a></p>
@@ -19,5 +20,6 @@
     <h1>Welcome to Watch World.</h1>
     <p>A place where you can come and appreciate others’ watch collection. Not only that, you can see if watches are on sale for you to purchase</p>
   <% } %>
+  </div>
 </body>
 </html>

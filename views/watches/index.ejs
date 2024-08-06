@@ -10,20 +10,20 @@
 
 <body>
   <%- include('../partials/_navbar') %>
+  <div class="web-page-content">
+    <h1>My Watch Collection</h1>
 
-  <h1>My Watch Collection</h1>
-
-  <ul>
-    <% if (watches.length > 0) {%>
-      <%watches.forEach((watch) => { %>
-        <li><a href="/users/<%= user._id %>/watches/<%= watch._id %>"><%= watch.year %> <%= watch.brand %> <%= watch.model %></a></li>
-    <%})%>
-    <%} else {%>
-      <p>Your collection is currently empty.</p>
-  <% } %>
-  </ul>
-  <a href="/users/<%= user._id %>/watches/new">Add a watch</a>
-
+    <ul>
+      <% if (watches.length > 0) {%>
+        <%watches.forEach((watch) => { %>
+          <li><a href="/users/<%= user._id %>/watches/<%= watch._id %>"><%= watch.year %> <%= watch.brand %> <%= watch.model %></a></li>
+      <%})%>
+      <%} else {%>
+        <p>Your collection is currently empty.</p>
+    <% } %>
+    </ul>
+    <a href="/users/<%= user._id %>/watches/new">Add a watch</a>
+  </div>
 </body>
 
 </html>

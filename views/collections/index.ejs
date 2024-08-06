@@ -8,11 +8,13 @@
 </head>
 <body>
   <%- include('../partials/_navbar.ejs') %>
-  <h1>Check out other user collections</h1>
-  <ul>
-    <% otherUsers.forEach((otherUser) => { %>
-      <li><a href="/collections/<%=otherUser._id%>"><%= otherUser.username%>'s collection</a></li>
-    <% }) %>
-</ul>
+  <div class="web-page-content">
+    <h1>Check out other user collections</h1>
+    <ul>
+      <% otherUsers.forEach((otherUser) => { %>
+        <li><a href="/collections/<%=otherUser._id%>"><%= otherUser.username%>'s collection</a></li>
+      <% }) %>
+    </ul>
+  </div>
 </body>
 </html>
