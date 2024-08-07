@@ -5,7 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>
-    <%= userWatch.owner.username %>'s <%= userWatch.year %> <%= userWatch.brand %> <%= userWatch.model %>
+    <%= userWatch.owner.username %>'s <%= userWatch.year %>
+        <%= userWatch.brand %>
+          <%= userWatch.model %>
   </title>
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
@@ -13,83 +15,117 @@
 <body>
   <%- include('../partials/_navbar.ejs') %>
     <div class="web-page-content">
-      <h1><%= userWatch.year %> <%= userWatch.brand %> <%= userWatch.model %></h1>
+      <h1>
+        <%= userWatch.year %>
+          <%= userWatch.brand %>
+            <%= userWatch.model %>
+      </h1>
       <table class="collections-show">
         <tbody>
           <tr>
             <th>Year:</th>
-            <td><%= userWatch.year %></td>
+            <td>
+              <%= userWatch.year %>
+            </td>
           </tr>
           <tr>
             <th>Brand:</th>
-            <td><%= userWatch.brand %></td>
+            <td>
+              <%= userWatch.brand %>
+            </td>
           </tr>
           <tr>
             <th>Model:</th>
-            <td><%= userWatch.model %></td>
+            <td>
+              <%= userWatch.model %>
+            </td>
           </tr>
           <tr>
             <th>Dial Size:</th>
-            <td><%= userWatch.dialsize %></td>
+            <td>
+              <%= userWatch.dialsize %>
+            </td>
           </tr>
           <tr>
             <th>Condition:</th>
-            <td><%= userWatch.condition %></td>
+            <td>
+              <%= userWatch.condition %>
+            </td>
           </tr>
           <tr>
             <th>Price:</th>
-            <td><%= userWatch.price %></td>
+            <td>
+              <%= userWatch.price %>
+            </td>
           </tr>
           <tr>
             <th>For Sale:</th>
             <%if (userWatch.isForSale) { %>
-              <td>Yes - contact <strong><%=userWatch.owner.username%></strong> for details</td>
+              <td>Yes - contact <strong>
+                  <%=userWatch.owner.username%>
+                </strong> for details</td>
               <%} else {%>
                 <td>No</td>
                 <%}%>
-              </tr>
-              <tr>
-              <th>Owner Notes:</th>
-              <td><%= userWatch.notes %></td> 
-            </tr>
-          </tbody>
+          </tr>
+          <tr>
+            <th>Owner Notes:</th>
+            <td>
+              <%= userWatch.notes %>
+            </td>
+          </tr>
+        </tbody>
       </table>
-    <div class="likes-div">
-      <%if (userWatch.favoritedByUsers.length === 1) { %>
-        <p> <%=userWatch.favoritedByUsers.length%> person has liked this watch!</p>
-      <%} else { %>
-        <p> <%=userWatch.favoritedByUsers.length%> people have liked this watch!</p>
-      <%}%>
-      <% if (userHasFavorited) { %>
-        <form action="/collections/<%=userWatch.owner._id%>/<%= userWatch._id %>/favorited-by/<%=user._id%>?_method=DELETE" method="POST">
-          <button type="submit">Unlike this watch</button>
-        </form>
-        <% } else { %>
-          <form action="/collections/<%=userWatch.owner._id%>/<%= userWatch._id %>/favorited-by/<%=user._id%>" method="POST">
-            <button type="submit">Like this watch!</button>
-          </form>
-          <% } %>
+      <div class="likes-div">
+        <%if (userWatch.favoritedByUsers.length===1) { %>
+          <p>
+            <%=userWatch.favoritedByUsers.length%> person has liked this watch!
+          </p>
+          <%} else { %>
+            <p>
+              <%=userWatch.favoritedByUsers.length%> people have liked this watch!
+            </p>
+            <%}%>
+              <% if (userHasFavorited) { %>
+                <form
+                  action="/collections/<%=userWatch.owner._id%>/<%= userWatch._id %>/favorited-by/<%=user._id%>?_method=DELETE"
+                  method="POST">
+                  <button class="form-button" type="submit">Unlike this watch</button>
+                </form>
+                <% } else { %>
+                  <form action="/collections/<%=userWatch.owner._id%>/<%= userWatch._id %>/favorited-by/<%=user._id%>"
+                    method="POST">
+                    <button class="form-button" type="submit">Like this watch!</button>
+                  </form>
+                  <% } %>
       </div>
       <div class="comments-div">
         <h2>Comments</h2>
         <form action="/collections/<%=userWatch.owner._id%>/<%= userWatch._id %>/comments" method="POST">
           <textarea id="comment" name="comment"></textarea>
-          <button type="submit">Post Comment</button>
+          <button class="form-button" type="submit">Post Comment</button>
         </form>
-        <%if(userWatch.commentsByUsers.length === 0) { %>
+        <%if(userWatch.commentsByUsers.length===0) { %>
           <p>There are no comments</p>
           <% } else { %>
-            <% userWatch.commentsByUsers.forEach((comment) => { %>
-              <p><strong><%=comment.owner.username%></strong>: <%=comment.comment%>
-              <%if(comment.owner.id === currentUser) {%>
-                <form action="/collections/<%=userWatch.owner._id%>/<%= userWatch._id %>/comments/<%=comment._id%>?_method=DELETE" method="POST">
-                  <button type="submit">Delete Comment</button>
-                </form>
-              <%}%>
-            </p>
+            <% userWatch.commentsByUsers.forEach((comment)=> { %>
+              <div>
+                <p><strong>
+                    <%=comment.owner.username%>
+                  </strong>: <%=comment.comment%>
+                </p>
+                <%if(comment.owner.id===currentUser) {%>
+                  <form
+                    action="/collections/<%=userWatch.owner._id%>/<%= userWatch._id %>/comments/<%=comment._id%>?_method=DELETE"
+                    method="POST">
+                    <button type="submit">&#10060;</button>
+                  </form>
+                  <%}%>
+              </div>
               <% })} %>
       </div>
+      <%- include('../partials/_logo.ejs') %>
     </div>
-  </body>
+</body>
 
 </html>

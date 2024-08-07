@@ -8,11 +8,29 @@ body, html {
   background-color: beige;
 }
 
+.logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 750px;
+}
+
+#logo {
+  height: 5rem;
+}
+
 table {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+button {
+  border: none;
+  background-color: beige;
+  color: rgb(144, 0, 0);
 }
 
 .collections-show th {
@@ -62,14 +80,30 @@ table {
   background-color: beige
 }
 
-.likes-div, .comments-div {
+.likes-div {
   text-align: center;
+}
+
+.comments-div {
+  display: flex;
+  width: 100vw;
+  flex-direction: column;
+}
+
+.comments-div > div {
+  display: flex;
+  align-items: center;
 }
 
 .mywatch-index th, .mywatch-index td {
  text-align: center;
 }
 
+textarea{
+  border-radius: 20px;
+  padding: 20px;
+  height: auto 0;
+}
 
 #form {
   display: flex;
@@ -83,7 +117,8 @@ table {
   font-size: 20px;
   border: none;
   background-color: rgb(16,80,51);
-  border-radius: 35px;
+  border-radius: 30px;
+  padding: 7px;
   font-family: 'Raleway', sans-serif;
   color: beige;
   transition: color 0.15s;

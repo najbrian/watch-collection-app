@@ -54,6 +54,9 @@ const watchSchema = new mongoose.Schema({
       ref: 'User',
     }
   ],
+  img: {
+    type: String
+  }
 })
 
 const Watch = mongoose.model('Watch', watchSchema)

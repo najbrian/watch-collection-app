@@ -3,27 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home Page</title>
+  <title>Welcome to Watch World</title>
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
   <%- include('./partials/_navbar.ejs') %>
   <div class="web-page-content">
-  <% if (user) { %>
-    <h1>Welcome, <%= user.username %>!</h1>
-    <p><a href="/users/<%=user._id%>/watches">My Collection</a></p>
-
-    <p>
-      <a href="/auth/sign-out">Sign out</a>
-    </p>
-  <% } else { %>
-    <h1>Welcome to Watch World</h1>
-    <p>A place where you can come and appreciate others’ watch collections. Not only that, you can see if watches are on sale for you to purchase</p>
-
-    <a href="/auth/sign-in">Sign In</a>
-    <a href="/auth/sign-up">Register</a>
-
-  <% } %>
-  </div>
-</body>
+    <h1>Welcome to Watch World!</h1>
+    <% if (user) { %>
+      <h2></h2>
+      <p><a href="/users/<%=user._id%>/watches">My Collection</a></p>
+      
+      <p>
+        <a href="/auth/sign-out">Sign out</a>
+      </p>
+      <% } else { %>
+        <p>A place where you can come and appreciate others’ watch collections. Not only that, you can see if watches are on sale for you to purchase</p>
+        
+        <a href="/auth/sign-in">Sign In</a>
+        <a href="/auth/sign-up">Register</a>
+        
+        <% } %>
+        <%- include('./partials/_logo.ejs') %>
+      </div>
+    </body>
 </html>

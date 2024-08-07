@@ -10,46 +10,47 @@
 
 <body>
   <%- include('../partials/_navbar') %>
-  <div>
+  <div class="web-page-content">
     <h1>Edit Details: <%= watch.year%> <%= watch.brand %> <%= watch.model %></h1>
-    <form class="form" action="/users/<%= user._id %>/watches/<%= watch._id%>?_method=PUT" method="POST">
-      <label for="brand">Brand</label>
-          <select id="brand" name="brand" required>
-            <option><%= watch.brand %></option>
-            <% result.forEach((brand) => { %>
-              <option value="<%= brand.brandName%>"><%= brand.brandName %></option>
-            <% }) %>
-          </select>
+    <div class="form-div">
+      <form id="form" action="/users/<%= user._id %>/watches/<%= watch._id%>?_method=PUT" method="POST">
+        <label for="brand">Brand</label>
+        <input id="brand" name="brand" value="<%= watch.brand %>" required>
 
-      <label for="model">Model</label>
-      <input id="model" name="model" value="<%= watch.model %>"required>
+        <label for="model">Model</label>
+        <input id="model" name="model" value="<%= watch.model %>"required>
 
-      <label for="year">Year</label>
-      <input  id="year" name="year" type="number" max="2024" value="<%= watch.year %>" required>
+        <label for="year">Year</label>
+        <input  id="year" name="year" type="number" max="2024" value="<%= watch.year %>" required>
 
-      <label for="dialsize">Dial Size</label>
-      <input id="dialsize" name="dialsize" type="text" value="<%= watch.dialsize %>" required>
+        <label for="dialsize">Dial Size</label>
+        <input id="dialsize" name="dialsize" type="text" value="<%= watch.dialsize %>" required>
 
-      <label for="condition">Condition</label>
-      <select id="condition" name="condition" required>
-        <option value="brand-new">Brand new</option>
-        <option value="mint-condition">Mint condition</option>
-        <option value="slightly-used">Slightly used</option>
-        <option value="used">Used</option> . 
-        <option value="old">Vintage</option>
-      </select>
+        <label for="condition">Condition</label>
+        <select id="condition" name="condition" required>
+          <option value="brand-new" <%= watch.condition === "brand-new" ? "selected" : "" %>>Brand new</option>
+          <option value="mint-condition" <%= watch.condition === "mint-condition" ? "selected" : "" %>>Mint condition</option>
+          <option value="slightly-used" <%= watch.condition === "slightly-used" ? "selected" : "" %>>Slightly used</option>
+          <option value="used" <%= watch.condition === "used" ? "selected" : "" %>>Used</option> . 
+          <option value="old" <%= watch.condition === "old" ? "selected" : "" %>>Vintage</option>
+        </select>
 
-      <label for="price">Price</label>
-      <input id="price" name="price" type="number" min="0" value="<%= watch.price %>">
+        <label for="price">Price</label>
+        <input id="price" name="price" type="number" min="0" value="<%= watch.price %>">
 
-      <label for="forsale">Is this watch for sale?</label>
-      <input id="forsale" name="isForSale" type="checkbox" <%if (watch.isForSale) {%>checked<%}%>>
+        <label for="forsale">Is this watch for sale?</label>
+        <input id="forsale" name="isForSale" type="checkbox" <%if (watch.isForSale) {%>checked<%}%>>
 
-      <label for="notes">Notes</label>
-      <textarea id="notes" name="notes"><%= watch.notes %></textarea>
+        <label for="img">Image Link (must be .png)</label>
+        <input id="img" name="img" type="text" value="<%= watch.img %>"/>
 
-      <button type="submit"> Update watch details</button>
-    </form>
+        <label for="notes">Notes</label>
+        <textarea id="notes" name="notes"><%= watch.notes %></textarea>
+
+        <button class="form-button" type="submit"> Update watch details</button>
+      </form>
+    </div>
+    <%- include('../partials/_logo.ejs') %>
   </div>
 
 </body>

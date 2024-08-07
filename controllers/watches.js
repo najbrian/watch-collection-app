@@ -18,23 +18,33 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/new', async (req, res) => {
-  const url = 'https://watch-database1.p.rapidapi.com/all-brands';
-  const options = {
-    method: 'GET',
-    headers: {
-      'x-rapidapi-key': `${process.env.API_KEY}`,
-      'x-rapidapi-host': 'watch-database1.p.rapidapi.com'
-    }
-  };
 
   try {
-    const response = await fetch(url, options);
-    const result = await response.json();
-    res.render('watches/new.ejs', { result })
+    res.render('watches/new.ejs')
   } catch (error) {
     console.error(error);
   }
 })
+
+//GET NEW ROUTE WITH API
+// router.get('/new', async (req, res) => {
+//   const url = 'https://watch-database1.p.rapidapi.com/all-brands';
+//   const options = {
+//     method: 'GET',
+//     headers: {
+//       'x-rapidapi-key': `${process.env.API_KEY}`,
+//       'x-rapidapi-host': 'watch-database1.p.rapidapi.com'
+//     }
+//   };
+
+//   try {
+//     const response = await fetch(url, options);
+//     const result = await response.json();
+//     res.render('watches/new.ejs', { result })
+//   } catch (error) {
+//     console.error(error);
+//   }
+// })
 
 router.get('/brand', async (req,res) => {
   console.log(req.body)
@@ -42,7 +52,7 @@ router.get('/brand', async (req,res) => {
 
 router.get('/:watchId', async (req, res) => {
   try {
-    const watchData = await Watch.findById(req.params.watchId)
+    const watchData = await Watch.findById(req.params.watchId).populate('commentsByUsers.owner')
     res.render('watches/show.ejs', { watch: watchData })
   } catch (error) {
     console.log(error)
@@ -51,24 +61,35 @@ router.get('/:watchId', async (req, res) => {
 })
 
 router.get('/:watchId/edit', async (req, res) => {
-  const url = 'https://watch-database1.p.rapidapi.com/all-brands';
-  const options = {
-    method: 'GET',
-    headers: {
-      'x-rapidapi-key': `${process.env.API_KEY}`,
-      'x-rapidapi-host': 'watch-database1.p.rapidapi.com'
-    }
-  };
   try {
-    const response = await fetch(url, options);
-    const result = await response.json();
     const editWatch = await Watch.findById(req.params.watchId).populate('owner')
-    res.render('watches/edit.ejs', { watch: editWatch, result })
+    res.render('watches/edit.ejs', { watch: editWatch })
   } catch (error) {
     console.log(error)
     res.redirect('/')
   }
 })
+
+//GET ROUTE FOR EDITING WATCH USING API
+// router.get('/:watchId/edit', async (req, res) => {
+//   const url = 'https://watch-database1.p.rapidapi.com/all-brands';
+//   const options = {
+//     method: 'GET',
+//     headers: {
+//       'x-rapidapi-key': `${process.env.API_KEY}`,
+//       'x-rapidapi-host': 'watch-database1.p.rapidapi.com'
+//     }
+//   };
+//   try {
+//     const response = await fetch(url, options);
+//     const result = await response.json();
+//     const editWatch = await Watch.findById(req.params.watchId).populate('owner')
+//     res.render('watches/edit.ejs', { watch: editWatch, result })
+//   } catch (error) {
+//     console.log(error)
+//     res.redirect('/')
+//   }
+// })
 
 router.post('/', async (req, res) => {
   try {

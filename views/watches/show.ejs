@@ -77,6 +77,7 @@
           </tr>
         </tbody>
       </table>
+      <img src="<%=watch.img%>" />
       <a href="/users/<%=user._id%>/watches/<%= watch._id %>/edit">Edit watch details</a>
       <form action="/users/<%=user._id%>/watches/<%= watch._id %>?_method=DELETE" method="POST">
         <button type="submit">Delete from collection</button>
@@ -102,6 +103,7 @@
               </p>
               <% })} %>
       </div>
+      <%- include('../partials/_logo.ejs') %>
     </div>
 </body>
 

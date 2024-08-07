@@ -35,10 +35,25 @@
         </table>
         
       <%} else {%>
-        <p>Your collection is currently empty.</p>
-        <a class="add-watch-link" href="/users/<%= user._id %>/watches/new">Add a watch</a>
+        <table class="mywatch-index">
+          <thead>
+            <tr>
+              <th>Watches</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <td>Your collection is currently empty</td>
+              </tr>
+              <tr><td><br></td></tr>
+              <tr>
+                <td><a class="add-watch-link" href="/users/<%= user._id %>/watches/new">Add a watch</a></td>
+              </tr>
+          </tbody>
+        </table>
     <% } %>
     </ul>
+    <%- include('../partials/_logo.ejs') %>
   </div>
 </body>
 
