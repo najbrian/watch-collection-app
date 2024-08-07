@@ -20,6 +20,10 @@ body, html {
   height: 5rem;
 }
 
+#watch-img {
+  max-height: 300px;
+}
+
 table {
   display: flex;
   flex-direction: column;
