@@ -8,7 +8,7 @@
 
   # Watch World
 
-  ### [CLICK TO DEMO](https://meetyourclassmates.herokuapp.com/)
+  ### [CLICK TO DEMO](https://git.heroku.com/watch-collection-app.git)
 
   ##### Brian Na
 
@@ -68,7 +68,7 @@
 
 ## Additional Information
 
-<details open>
+<details close>
   <summary><strong>How to Get Started</strong></summary>
     <p>1. Make sure you first 'Register' and create an account. Once created, sign in and click on 'My Collection".</p>
     <p>2. Click 'Add Watch' to fill out all the detials of your watch in your collection. You can add an image link of your photo to share with other users when they look at your collection.</p>
@@ -82,16 +82,16 @@
     <p>3. From here, you can click on the like button, leave comments, and delete any comments you wish to remove. Once you're down, simply use the side nav bar to navigate back to explore other collections, back to your collection, or back to the home page. </p>
 </details>
 
-<details open>
+<details close>
   <summary> Trello Board </summary>
   <a href="https://trello.com/invite/b/66aac2f0a2aa9bc3997622b0/ATTIe8fafe799f0004a6dddf764128fff7acE43FE2AB/watch-collection-app"
     > Click here to see my Trello Board </a
   >
 </details>
 
-<details open>
+<details close>
   <summary> Deployed Link (Heroku) </summary>
-  <a href=""
+  <a href="https://git.heroku.com/watch-collection-app.git"
     > Click here to access my deployed link </a
   >
 </details>
