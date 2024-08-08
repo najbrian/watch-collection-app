@@ -8,7 +8,7 @@
 
   # Watch World
 
-  ### [CLICK TO DEMO](https://git.heroku.com/watch-collection-app.git)
+  ### [CLICK TO DEMO](https://watch-collection-app-158f655f9867.herokuapp.com/)
 
   ##### Brian Na
 
@@ -91,7 +91,7 @@
 
 <details close>
   <summary> Deployed Link (Heroku) </summary>
-  <a href="https://git.heroku.com/watch-collection-app.git"
+  <a href="https://watch-collection-app-158f655f9867.herokuapp.com/"
     > Click here to access my deployed link </a
   >
 </details>
