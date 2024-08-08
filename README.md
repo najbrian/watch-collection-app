@@ -53,7 +53,7 @@
       width="500"
       />
     </div>
-    
+
   ## Technologies Used
   ![MongoDB](https://img.shields.io/badge/-MongoDB-05122A?style=flat&logo=mongodb)
   ![Express](https://img.shields.io/badge/-Express-05122A?style=flat&logo=express)
@@ -95,3 +95,11 @@
     > Click here to access my deployed link </a
   >
 </details>
+
+## Upcoming Features
+
+- [ ] Search from all watches posted functionality
+
+- [ ] Iterations of different styles
+
+- [ ] ~~Add watch API~~
