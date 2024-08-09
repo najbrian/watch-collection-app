@@ -102,4 +102,8 @@
 
 - [ ] Iterations of different styles
 
+- [ ] Profile settings
+
+- [ ] Forget Email/Password settings
+
 - [ ] ~~Add watch API~~
